@@ -13,7 +13,7 @@
     "components": "@/shared/components",
     "composables": "@/shared/lib/composables",
     "utils": "@/shared/lib/utils",
-    "ui": "@/shared/components/ui",
+    "ui": "@/shared/ui",
     "lib": "@/shared/lib"
   },
   "iconLibrary": "lucide"

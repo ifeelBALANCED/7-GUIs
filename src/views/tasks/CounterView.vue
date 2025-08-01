@@ -2,8 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
-
-const count = 0
+import { CounterInput } from '@/features/counter'
 </script>
 
 <template>
@@ -41,32 +40,6 @@ const count = 0
       </div>
     </div>
 
-    <!-- Counter UI -->
-    <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 max-w-md">
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Count</label>
-          <input
-            type="text"
-            :value="count"
-            readonly
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white text-center text-lg font-mono"
-          />
-        </div>
-
-        <div class="flex gap-3">
-          <button
-            class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-          >
-            Increment
-          </button>
-          <button
-            class="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
-          >
-            Reset
-          </button>
-        </div>
-      </div>
-    </div>
+    <counter-input />
   </BaseLayout>
 </template>
