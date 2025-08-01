@@ -9,9 +9,7 @@ export default defineConfig(({ mode }) => {
     command: 'serve',
   }
 
-  const baseConfig = typeof viteConfig === 'function'
-    ? viteConfig(fullEnv)
-    : viteConfig
+  const baseConfig = typeof viteConfig === 'function' ? viteConfig(fullEnv) : viteConfig
 
   return mergeConfig(baseConfig, {
     test: {
@@ -19,6 +17,10 @@ export default defineConfig(({ mode }) => {
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'json', 'html'],
+      },
     },
   })
 })

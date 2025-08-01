@@ -2,9 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
-
-const celsius = 0
-const fahrenheit = 32
+import { TemperatureConverter } from '@/features/converter'
 </script>
 
 <template>
@@ -47,53 +45,6 @@ const fahrenheit = 32
       </div>
     </div>
 
-    <!-- Temperature Converter UI -->
-    <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 max-w-md">
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Celsius</label>
-          <input
-            type="text"
-            :value="celsius"
-            placeholder="Enter temperature in Celsius"
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400"
-          />
-        </div>
-
-        <div class="flex justify-center">
-          <div class="text-slate-400 text-2xl">⇄</div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Fahrenheit</label>
-          <input
-            type="text"
-            :value="fahrenheit"
-            placeholder="Enter temperature in Fahrenheit"
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400"
-          />
-        </div>
-      </div>
-    </div>
+    <TemperatureConverter />
   </BaseLayout>
 </template>
-
-<style scoped>
-/* Custom scrollbar for webkit browsers */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-</style>

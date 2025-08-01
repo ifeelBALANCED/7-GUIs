@@ -1,11 +1,8 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
 import { useCounterStore } from '../model'
+import { setupPiniaForTesting } from '@/shared/test-utils'
 
 describe('Counter Store', () => {
-  beforeEach(() => {
-    setActivePinia(createPinia())
-  })
+  setupPiniaForTesting()
 
   describe('initial state', () => {
     it('should initialize with count as 0', () => {
