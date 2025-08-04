@@ -2,12 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
-
-// This would be the actual flight booking logic, but we're only implementing UI
-const tripType = 'one-way'
-const departureDate = ''
-const returnDate = ''
-const isBookEnabled = false
+import { FlightBookerCard } from '@/features/flight-booker'
 </script>
 
 <template>
@@ -50,45 +45,6 @@ const isBookEnabled = false
       </div>
     </div>
 
-    <!-- Flight Booker UI -->
-    <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 max-w-md">
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Type of Flight</label>
-          <select
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white"
-          >
-            <option value="one-way">One-way flight</option>
-            <option value="return">Return flight</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Start Date</label>
-          <input
-            type="date"
-            :value="departureDate"
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Return Date</label>
-          <input
-            type="date"
-            :value="returnDate"
-            :disabled="tripType === 'one-way'"
-            class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white disabled:opacity-50 disabled:cursor-not-allowed"
-          />
-        </div>
-
-        <button
-          :disabled="!isBookEnabled"
-          class="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
-        >
-          Book
-        </button>
-      </div>
-    </div>
+    <FlightBookerCard />
   </BaseLayout>
 </template>

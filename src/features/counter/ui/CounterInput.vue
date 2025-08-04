@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import { useCounterStore } from '../model'
 import { Input } from '@/shared/ui/input'
 import { Button } from '@/shared/ui/button'
+import { Label } from '@/shared/ui/label'
 
 const counterStore = useCounterStore()
 const { increment, reset } = counterStore
@@ -13,7 +14,7 @@ const { count } = storeToRefs(counterStore)
   <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 max-w-md">
     <div class="space-y-4">
       <div>
-        <label for="count" class="block text-sm font-medium text-white mb-2"> Count </label>
+        <Label for="count" class="block text-sm font-medium text-white mb-2"> Count </Label>
         <Input
           id="count"
           type="number"
