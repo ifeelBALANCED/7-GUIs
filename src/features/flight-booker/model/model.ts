@@ -10,9 +10,12 @@ export const useFlightBookerStore = defineStore('flight-booker', () => {
   const isOneWay = computed(() => tripType.value === 'one-way')
   const isReturn = computed(() => tripType.value === 'return')
 
-  const isBookEnabled = computed(
-    () => startDate.value && (isOneWay.value || (isReturn.value && endDate.value)),
-  )
+  const isBookEnabled = computed(() => {
+    if (!startDate.value) return false
+    if (isOneWay.value) return true
+    if (isReturn.value && endDate.value) return true
+    return false
+  })
 
   const flightDetails = computed(() => ({
     tripType: tripType.value,

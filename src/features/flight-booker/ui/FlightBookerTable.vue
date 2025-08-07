@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DateValue } from '@internationalized/date'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table'
+import { formatDate } from '../lib'
 
 interface FlightDetails {
   startDate?: DateValue
@@ -11,14 +12,6 @@ interface FlightDetails {
 defineProps<{
   flightDetails: FlightDetails
 }>()
-
-const formatDate = (date: DateValue) => {
-  return date.toDate('UTC').toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
 </script>
 
 <template>
