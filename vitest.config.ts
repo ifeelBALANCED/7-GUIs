@@ -1,26 +1,27 @@
-import { defineConfig, mergeConfig, configDefaults } from 'vitest/config'
-import type { ConfigEnv } from 'vite'
+import { defineConfig } from 'vitest/config'
+import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
-import viteConfig from './vite.config.js'
 
-export default defineConfig(({ mode }) => {
-  const fullEnv: ConfigEnv = {
-    mode,
-    command: 'serve',
-  }
-
-  const baseConfig = typeof viteConfig === 'function' ? viteConfig(fullEnv) : viteConfig
-
-  return mergeConfig(baseConfig, {
-    test: {
-      environment: 'jsdom',
-      exclude: [...configDefaults.exclude, 'e2e/**'],
-      root: fileURLToPath(new URL('./', import.meta.url)),
-      globals: true,
-      coverage: {
-        provider: 'v8',
-        reporter: ['text', 'json', 'html'],
-      },
+export default defineConfig({
+  plugins: [vue()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./tests/setup.ts'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      '**/tests/e2e/**',
+      '**/tests/playwright/**',
+      '**/_BACKEND_/**',
+    ],
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@tests': fileURLToPath(new URL('./tests', import.meta.url)),
     },
-  })
+  },
 })

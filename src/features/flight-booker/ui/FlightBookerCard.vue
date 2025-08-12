@@ -47,8 +47,12 @@ function onFlightDetailsClose() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="one-way">One-way flight</SelectItem>
-              <SelectItem value="return">Return flight</SelectItem>
+              <SelectItem data-testid="flight-type-option-one-way" value="one-way"
+                >One-way flight</SelectItem
+              >
+              <SelectItem data-testid="flight-type-option-return" value="return"
+                >Return flight</SelectItem
+              >
             </SelectGroup>
           </SelectContent>
         </Select>

@@ -15,23 +15,26 @@ defineProps<{
 </script>
 
 <template>
-  <Table class="w-full">
+  <Table data-testid="flight-booker-table" class="w-full">
     <TableHeader>
       <TableRow class="border-b border-gray-600">
-        <TableHead class="text-white font-medium">FLIGHT</TableHead>
-        <TableHead class="text-white font-medium">DATE</TableHead>
+        <TableHead data-testid="table-head-flight" class="text-white font-medium">FLIGHT</TableHead>
+        <TableHead data-testid="table-head-date" class="text-white font-medium">DATE</TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
       <TableRow class="border-b border-gray-600">
-        <TableCell class="text-white">Traveling</TableCell>
-        <TableCell class="text-white">
+        <TableCell data-testid="row-traveling" class="text-white">Traveling</TableCell>
+        <TableCell data-testid="row-traveling-date" class="text-white">
           {{ flightDetails.startDate ? formatDate(flightDetails.startDate) : 'N/A' }}
         </TableCell>
       </TableRow>
-      <TableRow v-if="flightDetails.tripType === 'return' && flightDetails.endDate">
-        <TableCell class="text-white">Return</TableCell>
-        <TableCell class="text-white">
+      <TableRow
+        data-testid="row-return"
+        v-if="flightDetails.tripType === 'return' && flightDetails.endDate"
+      >
+        <TableCell data-testid="row-return-label" class="text-white">Return</TableCell>
+        <TableCell data-testid="row-return-date" class="text-white">
           {{ formatDate(flightDetails.endDate) }}
         </TableCell>
       </TableRow>

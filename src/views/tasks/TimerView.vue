@@ -2,11 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
-
-// This would be the actual timer logic, but we're only implementing UI
-const elapsed = 0
-const duration = 10
-const isRunning = false
+import { Timer } from '@/features/timer'
 </script>
 
 <template>
@@ -47,74 +43,11 @@ const isRunning = false
       </div>
     </div>
 
-    <!-- Timer UI -->
-    <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 max-w-md">
-      <div class="space-y-6">
-        <!-- Gauge -->
-        <div class="text-center">
-          <div class="relative w-32 h-32 mx-auto">
-            <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-              <!-- Background circle -->
-              <circle cx="60" cy="60" r="54" fill="none" stroke="#475569" stroke-width="12" />
-              <!-- Progress circle -->
-              <circle
-                cx="60"
-                cy="60"
-                r="54"
-                fill="none"
-                stroke="#14b8a6"
-                stroke-width="12"
-                stroke-dasharray="339.292"
-                :stroke-dashoffset="339.292 - (elapsed / duration) * 339.292"
-                stroke-linecap="round"
-                class="transition-all duration-300"
-              />
-            </svg>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-2xl font-bold">{{ Math.round((elapsed / duration) * 100) }}%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Elapsed Time Display -->
-        <div class="text-center">
-          <label class="block text-sm font-medium text-white mb-2">Elapsed Time</label>
-          <div class="text-3xl font-mono text-teal-400">{{ elapsed.toFixed(1) }}s</div>
-        </div>
-
-        <!-- Duration Slider -->
-        <div>
-          <label class="block text-sm font-medium text-white mb-2">Duration: {{ duration }}s</label>
-          <input
-            type="range"
-            :value="duration"
-            min="1"
-            max="60"
-            step="0.1"
-            class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
-          />
-        </div>
-
-        <!-- Controls -->
-        <div class="flex gap-3">
-          <button
-            class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-          >
-            {{ isRunning ? 'Pause' : 'Start' }}
-          </button>
-          <button
-            class="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
-          >
-            Reset
-          </button>
-        </div>
-      </div>
-    </div>
+    <Timer />
   </BaseLayout>
 </template>
 
 <style scoped>
-/* Custom slider styles */
 .slider::-webkit-slider-thumb {
   appearance: none;
   height: 20px;
