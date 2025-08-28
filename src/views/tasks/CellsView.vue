@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import { ExternalLink } from 'lucide-vue-next'
-import { BaseLayout } from '@/shared/ui/layouts'
+import { BaseLayout, TaskDescription } from '@/shared/ui'
 
 const cells = ref<string[][]>([
   ['', 'A', 'B', 'C', 'D', 'E'],
@@ -17,39 +15,13 @@ const selectedCell = ref<string | null>(null)
 </script>
 
 <template>
-  <BaseLayout>
-    <template #header>
-      <nav class="text-sm">
-        <RouterLink to="/" class="text-white hover:text-teal-200 transition-colors">
-          Home
-        </RouterLink>
-        <span class="mx-2 text-white">/</span>
-        <span class="text-teal-200">Cells</span>
-      </nav>
-    </template>
-
-    <div class="mb-6">
-      <h2 class="text-2xl font-bold mb-2">
-        Seventh task of
-        <a
-          href="https://eugenkiss.github.io/7guis/"
-          class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
-          target="_blank"
-        >
-          The 7 Tasks from 7GUIs
-          <ExternalLink class="w-4 h-4" />
-        </a>
-      </h2>
-
-      <div class="bg-slate-800 rounded-lg p-4 mt-4">
-        <p class="text-slate-300 mb-2"><strong>Challenge:</strong> Spreadsheet, user input.</p>
-        <p class="text-slate-300">
-          Build a frame containing a grid of cells. Each cell should support editing. When the user
-          changes the value in a cell, the values that depend on it are updated automatically.
-          Determine the dependencies yourself and be able to explain your decisions.
-        </p>
-      </div>
-    </div>
+  <BaseLayout current-task="Cells">
+    <TaskDescription
+      :task-number="7"
+      task-name="Cells"
+      challenge="Spreadsheet, user input."
+      description="Build a frame containing a grid of cells. Each cell should support editing. When the user changes the value in a cell, the values that depend on it are updated automatically. Determine the dependencies yourself and be able to explain your decisions."
+    />
 
     <!-- Cells UI -->
     <div class="bg-slate-800 rounded-lg p-6 border border-slate-700">

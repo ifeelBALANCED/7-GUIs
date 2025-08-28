@@ -1,17 +1,7 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
-import { BaseLayout } from '@/shared/ui/layouts'
-
-const tasks = [
-  { id: 'counter', name: 'Counter', path: '/counter' },
-  { id: 'temperature-converter', name: 'Temperature Converter', path: '/temperature-converter' },
-  { id: 'flight-booker', name: 'Flight Booker', path: '/flight-booker' },
-  { id: 'timer', name: 'Timer', path: '/timer' },
-  { id: 'crud', name: 'CRUD', path: '/crud' },
-  { id: 'circle-drawer', name: 'Circle Drawer', path: '/circle-drawer' },
-  { id: 'cells', name: 'Cells', path: '/cells' },
-]
+import { BaseLayout } from '@/shared/ui'
 </script>
 
 <template>
@@ -108,28 +98,6 @@ const tasks = [
           <ExternalLink class="w-4 h-4" /> </a
         >.
       </p>
-    </div>
-
-    <div class="mt-12">
-      <h3 class="text-2xl font-semibold mb-4">The 7 Tasks</h3>
-      <div class="bg-slate-800 rounded-lg p-6">
-        <div class="grid gap-2">
-          <RouterLink
-            v-for="(task, index) in tasks"
-            :key="task.id"
-            :to="task.path"
-            class="flex items-center justify-between p-3 rounded-md hover:bg-slate-700 transition-colors group"
-          >
-            <div class="flex items-center gap-3">
-              <span class="text-slate-400 text-sm font-mono">{{ index + 1 }}.</span>
-              <span class="text-white group-hover:text-teal-300 transition-colors">{{
-                task.name
-              }}</span>
-            </div>
-            <span class="text-slate-500 group-hover:text-slate-300 transition-colors">→</span>
-          </RouterLink>
-        </div>
-      </div>
     </div>
   </BaseLayout>
 </template>
