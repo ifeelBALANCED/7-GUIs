@@ -31,6 +31,7 @@ const {
       <div class="flex gap-3 mb-6">
         <button
           :disabled="isUndoDisabled"
+          data-testid="undo-button"
           class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
           @click="handleUndo"
         >
@@ -39,6 +40,7 @@ const {
 
         <button
           :disabled="isRedoDisabled"
+          data-testid="redo-button"
           class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
           @click="handleRedo"
         >

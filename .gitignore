@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+test-results.json
 .env
 
 /cypress/videos/

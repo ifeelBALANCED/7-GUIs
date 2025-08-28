@@ -14,6 +14,7 @@ defineEmits<{
 
 <template>
   <div
+    data-testid="circle-canvas"
     class="bg-slate-700 rounded-lg border-2 border-dashed border-slate-600 h-96 relative overflow-hidden cursor-crosshair"
     @click.left="$emit('canvas-click', $event)"
     @contextmenu.prevent="$emit('open-menu-at', $event)"

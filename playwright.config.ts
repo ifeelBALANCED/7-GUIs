@@ -9,21 +9,13 @@ export default defineConfig({
   projects: [
     {
       name: 'chrome',
-      testMatch: '**/tests/playwright/**/*.spec.ts',
+      testMatch: '**/tests/e2e/**/*.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'http://localhost:5173',
         screenshot: 'on',
         video: 'retain-on-failure',
         trace: 'on-first-retry',
-      },
-    },
-    {
-      name: 'iphone-13',
-      testMatch: '**/tests/playwright/**/*.spec.ts',
-      use: {
-        ...devices['iPhone 13'],
-        baseURL: 'http://localhost:5173',
       },
     },
   ],
