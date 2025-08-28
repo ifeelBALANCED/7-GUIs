@@ -1,7 +1,7 @@
 import { mount, VueWrapper } from '@vue/test-utils'
 import { FlightBookerCard, flightBookerModel } from '@/features/flight-booker'
 import { createPinia, setActivePinia } from 'pinia'
-import { getLocalTimeZone, today, type DateValue } from '@internationalized/date'
+import { type DateValue, getLocalTimeZone, today } from '@internationalized/date'
 
 describe('FlightBookerCard', () => {
   let pinia: ReturnType<typeof createPinia>
@@ -51,13 +51,13 @@ describe('FlightBookerCard', () => {
 
     const triggers = wrapper.findAll('[data-slot="popover-trigger"]')
     const endTrigger = triggers[1]
-    expect(endTrigger.classes()).toContain('opacity-50')
+    expect(endTrigger?.classes()).toContain('opacity-50')
 
     const d1: DateValue = today(getLocalTimeZone())
     store.startDate = d1
     await wrapper.vm.$nextTick()
 
-    expect(endTrigger.classes()).not.toContain('opacity-50')
+    expect(endTrigger?.classes()).not.toContain('opacity-50')
 
     const d2: DateValue = today(getLocalTimeZone())
     store.endDate = d2
@@ -84,7 +84,7 @@ describe('FlightBookerCard', () => {
       '[data-testid="modal-close-button"]',
     ) as HTMLElement | null
     if (!closeBtnEl) throw new Error('close button not found')
-    await closeBtnEl.click()
+    closeBtnEl.click()
 
     await wrapper.vm.$nextTick()
     expect(store.tripType).toBe('one-way')

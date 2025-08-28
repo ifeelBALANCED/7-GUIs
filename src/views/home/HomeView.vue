@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { RouterLink } from 'vue-router'
 import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
@@ -35,8 +35,8 @@ const tasks = [
 
       <p>
         <a
-          href="https://eugenkiss.github.io/7guis/"
           class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+          href="https://eugenkiss.github.io/7guis/"
         >
           The 7 Tasks from 7GUIs Homepage
           <ExternalLink class="w-4 h-4" />
@@ -53,8 +53,8 @@ const tasks = [
         <ul class="list-disc list-inside space-y-1 ml-4">
           <li>
             <a
-              href="https://vuejs.org"
               class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+              href="https://vuejs.org"
             >
               Vue.js: UI framework
               <ExternalLink class="w-4 h-4" />
@@ -62,8 +62,8 @@ const tasks = [
           </li>
           <li>
             <a
-              href="https://pinia.vuejs.org"
               class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+              href="https://pinia.vuejs.org"
             >
               Pinia: State management
               <ExternalLink class="w-4 h-4" />
@@ -71,8 +71,8 @@ const tasks = [
           </li>
           <li>
             <a
-              href="https://ui.shadcn.com"
               class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+              href="https://ui.shadcn.com"
             >
               Shadcn Vue: Component library
               <ExternalLink class="w-4 h-4" />
@@ -84,16 +84,16 @@ const tasks = [
       <p>
         The goal of this activity was to learn using
         <a
-          href="https://en.wikipedia.org/wiki/Finite-state_machine"
           class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+          href="https://en.wikipedia.org/wiki/Finite-state_machine"
         >
           finite state machines
           <ExternalLink class="w-4 h-4" />
         </a>
         for building reactive UIs.
         <a
-          href="https://xstate.js.org"
           class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+          href="https://xstate.js.org"
         >
           XState
           <ExternalLink class="w-4 h-4" />
@@ -101,8 +101,8 @@ const tasks = [
         is a popular library that implements finite state machines and statecharts in JavaScript. It
         adheres to the
         <a
-          href="https://www.w3.org/TR/scxml/"
           class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+          href="https://www.w3.org/TR/scxml/"
         >
           State Chart XML (SCXML) specification
           <ExternalLink class="w-4 h-4" /> </a
@@ -110,7 +110,6 @@ const tasks = [
       </p>
     </div>
 
-    <!-- Task Navigation -->
     <div class="mt-12">
       <h3 class="text-2xl font-semibold mb-4">The 7 Tasks</h3>
       <div class="bg-slate-800 rounded-lg p-6">

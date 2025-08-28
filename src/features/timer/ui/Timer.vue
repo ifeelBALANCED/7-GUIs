@@ -14,7 +14,7 @@ const { elapsed, duration, progress, isRunning } = storeToRefs(timer)
 const durationArr = computed({
   get: () => [duration.value],
   set: ([v]: number[]) => {
-    duration.value = v
+    duration.value = v ?? 0
   },
 })
 

@@ -1,13 +1,23 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-import { ExternalLink } from 'lucide-vue-next'
 import { BaseLayout } from '@/shared/ui/layouts'
+import { storeToRefs } from 'pinia'
+import { CircleCanvas, circleModel, ContextMenu, RadiusPicker } from '@/features/circle-drawer'
+import { ExternalLink } from 'lucide-vue-next'
 
-const circles = [
-  { x: 100, y: 100, radius: 20 },
-  { x: 200, y: 150, radius: 30 },
-  { x: 300, y: 200, radius: 25 },
-]
+const store = circleModel.useCircles()
+const { circles, selected, menu, showDialog, isUndoDisabled, isRedoDisabled } = storeToRefs(store)
+
+const {
+  onCanvasClick,
+  openMenuAt,
+  closeMenu,
+  openAdjustDialog,
+  closeAdjustDialog,
+  setSelectedRadius,
+  handleUndo,
+  handleRedo,
+} = store
 </script>
 
 <template>
@@ -15,7 +25,7 @@ const circles = [
     <template #header>
       <h1 class="text-2xl font-bold">6. Circle Drawer</h1>
       <nav class="text-sm">
-        <RouterLink to="/" class="text-white hover:text-teal-200 transition-colors"
+        <RouterLink class="text-white hover:text-teal-200 transition-colors" to="/"
           >Home</RouterLink
         >
         <span class="mx-2 text-white">/</span>
@@ -27,8 +37,8 @@ const circles = [
       <h2 class="text-2xl font-bold mb-2">
         Sixth task of
         <a
-          href="https://eugenkiss.github.io/7guis/"
           class="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1"
+          href="https://eugenkiss.github.io/7guis/"
         >
           The 7 Tasks from 7GUIs
           <ExternalLink class="w-4 h-4" />
@@ -50,54 +60,49 @@ const circles = [
       </div>
     </div>
 
-    <!-- Circle Drawer UI -->
     <div class="bg-slate-800 rounded-lg p-6 border border-slate-700">
-      <!-- Controls -->
       <div class="flex gap-3 mb-6">
         <button
-          class="bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
+          :disabled="isUndoDisabled"
+          class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
+          @click="handleUndo"
         >
           Undo
         </button>
+
         <button
-          class="bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
+          :disabled="isRedoDisabled"
+          class="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
+          @click="handleRedo"
         >
           Redo
         </button>
       </div>
 
-      <!-- Canvas Area -->
-      <div
-        class="bg-slate-700 rounded-lg border-2 border-dashed border-slate-600 h-96 relative overflow-hidden"
-      >
-        <!-- Sample circles for demonstration -->
-        <div
-          v-for="(circle, index) in circles"
-          :key="index"
-          class="absolute w-10 h-10 bg-teal-500 rounded-full border-2 border-teal-300 cursor-pointer hover:bg-teal-400 transition-colors"
-          :style="{
-            left: `${circle.x}px`,
-            top: `${circle.y}px`,
-            width: `${circle.radius * 2}px`,
-            height: `${circle.radius * 2}px`,
-          }"
-        ></div>
-
-        <!-- Instructions overlay -->
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div class="text-center text-slate-400">
-            <p class="text-lg mb-2">Click to add circles</p>
-            <p class="text-sm">Right-click circles to adjust diameter</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info -->
-      <div class="mt-4 text-sm text-slate-400">
-        <p>• Left-click empty area to create a circle</p>
-        <p>• Left-click circle to select it</p>
-        <p>• Right-click selected circle to adjust diameter</p>
-      </div>
+      <CircleCanvas
+        :circles="circles"
+        :selected-id="selected?.id ?? null"
+        @canvas-click="onCanvasClick"
+        @open-menu-at="openMenuAt"
+      />
     </div>
+
+    <ContextMenu v-if="menu" :x="menu.x" :y="menu.y" @close="closeMenu">
+      <button
+        class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-600 transition-colors"
+        @click="openAdjustDialog"
+      >
+        Adjust diameter...
+      </button>
+    </ContextMenu>
+
+    <RadiusPicker
+      v-if="showDialog && selected"
+      :max="200"
+      :min="10"
+      :value="selected.radius"
+      @change="setSelectedRadius"
+      @close="closeAdjustDialog"
+    />
   </BaseLayout>
 </template>

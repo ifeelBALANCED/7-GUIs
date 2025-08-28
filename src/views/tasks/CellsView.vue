@@ -75,7 +75,6 @@ const selectedCell = ref<string | null>(null)
                   placeholder="Enter formula or value"
                   @focus="selectedCell = `${rowIndex}-${colIndex}`"
                   @blur="selectedCell = null"
-                  @input="cells[rowIndex][colIndex] = ($event?.target as HTMLInputElement).value"
                 />
                 <span
                   v-else
